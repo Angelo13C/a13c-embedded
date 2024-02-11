@@ -4,6 +4,8 @@
 //! across different parts of the project. These utilities aim to simplify common tasks and
 //! promote code reuse and readability.
 
+pub mod physical_quantities;
+
 /// Clamps the provided `value` within the specified range.
 ///
 /// If `value` is lower than the `min`, the `min` is returned.
