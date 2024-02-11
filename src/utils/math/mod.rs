@@ -24,10 +24,12 @@
 //! # assert_eq!(format!("Contrained value: {}", constrained_value), "Contrained value: 20");
 //! ```
 
+mod number_extensions;
 mod percentage;
 
 use core::ops::*;
 
+pub use number_extensions::*;
 pub use percentage::*;
 
 /// Maps a value from one range to another.
