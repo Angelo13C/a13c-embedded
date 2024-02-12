@@ -48,8 +48,7 @@ pub use percentage::*;
 ///
 /// [`linear interpolation`]: <https://en.wikipedia.org/wiki/Linear_interpolation>
 pub fn map<T>(value: T, from: RangeInclusive<T>, to: RangeInclusive<T>) -> T
-where
-	T: Clone + Copy + Sub<T, Output = T> + Mul<T, Output = T> + Add<T, Output = T> + Div<T, Output = T>,
+where T: Clone + Copy + Sub<T, Output = T> + Mul<T, Output = T> + Add<T, Output = T> + Div<T, Output = T>
 {
 	(value - *from.start()) * (*to.end() - *to.start()) / (*from.end() - *from.start()) + *to.start()
 }
@@ -67,8 +66,7 @@ where
 ///
 /// [`Linearly interpolates`]: <https://en.wikipedia.org/wiki/Linear_interpolation>
 pub fn lerp<T>(t: f32, range: RangeInclusive<T>) -> T
-where
-	T: Clone + Copy + Sub<T, Output = T> + Mul<f32, Output = T> + Add<T, Output = T>,
+where T: Clone + Copy + Sub<T, Output = T> + Mul<f32, Output = T> + Add<T, Output = T>
 {
 	*range.start() + (*range.end() - *range.start()) * t
 }
@@ -85,14 +83,18 @@ where
 /// assert_eq!(constrain(40, 0..=20), 20);
 /// ```
 pub fn constrain<T>(value: T, range: RangeInclusive<T>) -> T
-where
-	T: Copy + PartialOrd,
+where T: Copy + PartialOrd
 {
-	if value < *range.start() {
+	if value < *range.start()
+	{
 		*range.start()
-	} else if value > *range.end() {
+	}
+	else if value > *range.end()
+	{
 		*range.end()
-	} else {
+	}
+	else
+	{
 		value
 	}
 }

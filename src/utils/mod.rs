@@ -28,8 +28,7 @@ pub mod physical_quantities;
 /// slice_to_array::<_, 4>(&array);
 /// ```
 pub fn slice_to_array<T, const N: usize>(slice: &[T]) -> [T; N]
-where
-	T: Clone + Copy,
+where T: Clone + Copy
 {
 	core::array::from_fn(|i| slice[i])
 }
@@ -47,8 +46,7 @@ where
 /// assert_eq!(slice_to_array_filled(&array, -1), [5, 10, 20, -1, -1]);
 /// ```
 pub fn slice_to_array_filled<T, const N: usize>(slice: &[T], fill: T) -> [T; N]
-where
-	T: Clone + Copy,
+where T: Clone + Copy
 {
 	core::array::from_fn(|i| *slice.get(i).unwrap_or(&fill))
 }

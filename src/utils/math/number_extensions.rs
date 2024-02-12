@@ -1,10 +1,12 @@
 /// Extends the functionality of numbers types (like `f32`).
-pub trait NumberExt {
+pub trait NumberExt
+{
 	/// Returns the square of self (`self * self`).
 	fn sqr(&self) -> Self;
 }
 
-impl NumberExt for f32 {
+impl NumberExt for f32
+{
 	/// Returns the square of self (`self * self`).
 	///
 	/// # Examples
@@ -15,14 +17,16 @@ impl NumberExt for f32 {
 	/// assert_eq!(2.5.sqr(), 2.5 * 2.5);
 	/// assert_eq!(80_f32.sqr().sqrt(), 80_f32);
 	/// ```
-	fn sqr(&self) -> Self {
+	fn sqr(&self) -> Self
+	{
 		*self * *self
 	}
 }
 
 macro_rules! impl_number_ext_for_integer {
 	($type: ty) => {
-		impl NumberExt for $type {
+		impl NumberExt for $type
+		{
 			/// Returns the square of self (`self * self`).
 			///
 			/// # Examples
@@ -32,7 +36,8 @@ macro_rules! impl_number_ext_for_integer {
 			/// assert_eq!(4.sqr(), 4 * 4);
 			/// assert_eq!(13.sqr(), 13 * 13);
 			/// ```
-			fn sqr(&self) -> Self {
+			fn sqr(&self) -> Self
+			{
 				*self * *self
 			}
 		}

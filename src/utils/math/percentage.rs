@@ -4,7 +4,8 @@ use core::fmt::{Debug, Display};
 #[derive(PartialEq, PartialOrd, Clone, Copy, Default)]
 pub struct Percentage(f32);
 
-impl Percentage {
+impl Percentage
+{
 	/// The `0%` value.
 	pub const ZERO: Self = Self(0.);
 	/// The `100%` value.
@@ -22,7 +23,8 @@ impl Percentage {
 	/// assert!(Percentage::from_0_to_100(250.).is_err());
 	/// assert!(Percentage::from_0_to_100(-10.).is_err());
 	/// ```
-	pub fn from_0_to_100(value: f32) -> Result<Self, ()> {
+	pub fn from_0_to_100(value: f32) -> Result<Self, ValueOutOfRange>
+	{
 		Self::from_0_to_1(value / 100.)
 	}
 
@@ -38,11 +40,15 @@ impl Percentage {
 	/// assert!(Percentage::from_0_to_1(2.5).is_err());
 	/// assert!(Percentage::from_0_to_1(-0.2).is_err());
 	/// ```
-	pub fn from_0_to_1(value: f32) -> Result<Self, ()> {
-		if (0_f32..=1_f32).contains(&value) {
+	pub fn from_0_to_1(value: f32) -> Result<Self, ValueOutOfRange>
+	{
+		if (0_f32..=1_f32).contains(&value)
+		{
 			Ok(Self(value))
-		} else {
-			Err(())
+		}
+		else
+		{
+			Err(ValueOutOfRange)
 		}
 	}
 
@@ -55,7 +61,8 @@ impl Percentage {
 	/// assert_eq!(Percentage::from_0_to_1(1.).unwrap().into_0_to_1(), 1.);
 	/// assert_eq!(Percentage::from_0_to_100(30.).unwrap().into_0_to_1(), 0.3);
 	/// ```
-	pub fn into_0_to_1(&self) -> f32 {
+	pub fn into_0_to_1(&self) -> f32
+	{
 		self.0
 	}
 
@@ -68,19 +75,27 @@ impl Percentage {
 	/// assert_eq!(Percentage::from_0_to_100(100.).unwrap().into_0_to_100(), 100.);
 	/// assert_eq!(Percentage::from_0_to_1(0.8).unwrap().into_0_to_100(), 80.);
 	/// ```
-	pub fn into_0_to_100(&self) -> f32 {
+	pub fn into_0_to_100(&self) -> f32
+	{
 		self.into_0_to_1() * 100.
 	}
 }
 
-impl Debug for Percentage {
-	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub struct ValueOutOfRange;
+
+impl Debug for Percentage
+{
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+	{
 		write!(f, "{}%", self.0 * 100.)
 	}
 }
 
-impl Display for Percentage {
-	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+impl Display for Percentage
+{
+	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result
+	{
 		write!(f, "{}%", self.0 * 100.)
 	}
 }
