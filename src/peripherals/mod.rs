@@ -5,3 +5,4 @@
 //! Consult individual submodule documentation for more details.
 
 pub mod adc;
+pub mod interrupt;
