@@ -6,3 +6,4 @@ edition = "2021"
 description = "Common utilities and drivers for embedded systems. It's independent from the actual hardware used (it's an HAL), which makes it easily testable and usable by all the microcontrollers."
 
 [dependencies]
+embedded-hal = "1.0.0"
