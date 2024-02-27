@@ -4,6 +4,7 @@
 //! across different parts of the project. These utilities aim to simplify common tasks and
 //! promote code reuse and readability.
 
+pub mod algorithms;
 pub mod math;
 pub mod physical_quantities;
 
