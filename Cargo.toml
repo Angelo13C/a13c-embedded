@@ -8,8 +8,7 @@ description = "Common utilities and drivers for embedded systems. It's independe
 [features]
 default = ["graphics"]
 
-std = []
-graphics = ["embedded-graphics"]
+graphics = ["dep:embedded-graphics"]
 
 [dependencies]
 embedded-hal = "1.0.0"
@@ -19,5 +18,4 @@ ringbuffer = "0.15"
 
 embedded-graphics = { version = "0.8.1", optional = true }
 
-[target.'cfg(not(feature = "std"))'.dependencies]
 micromath = { version = "2.1", features = ["vector"] }
