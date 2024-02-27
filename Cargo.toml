@@ -15,6 +15,7 @@ graphics = ["embedded-graphics"]
 embedded-hal = "1.0.0"
 pid = "4.0.0"
 enumset = "1.1"
+ringbuffer = "0.15"
 
 embedded-graphics = { version = "0.8.1", optional = true }
 
