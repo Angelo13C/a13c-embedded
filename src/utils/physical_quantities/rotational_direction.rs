@@ -1,0 +1,50 @@
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[repr(i8)]
+/// Direction of rotation.
+pub enum RotationalDirection
+{
+	/// Clockwise
+	CW = 1,
+	/// Counter-clockwise
+	CCW = -1,
+}
+
+impl RotationalDirection
+{
+	/// Returns [`RotationalDirection::CW`] if the provided `value` has a positive sign, otherwise returns [`RotationalDirection::CCW`].
+	///
+	/// # Examples
+	/// ```
+	/// use a13c_embedded::utils::physical_quantities::rotational_direction::*;
+	///
+	/// assert_eq!(RotationalDirection::from_sign(40), RotationalDirection::CW);
+	/// assert_eq!(RotationalDirection::from_sign(0), RotationalDirection::CW);
+	/// assert_eq!(RotationalDirection::from_sign(-1), RotationalDirection::CCW);
+	/// ```
+	pub fn from_sign(value: i32) -> Self
+	{
+		match value >= 0
+		{
+			true => Self::CW,
+			false => Self::CCW,
+		}
+	}
+
+	/// Returns [`RotationalDirection::CW`] if `self` is [`RotationalDirection::CCW`], otherwise returns [`RotationalDirection::CCW`].
+	///
+	/// # Examples
+	/// ```
+	/// use a13c_embedded::utils::physical_quantities::rotational_direction::*;
+	///
+	/// assert_eq!(RotationalDirection::CW.opposite(), RotationalDirection::CCW);
+	/// assert_eq!(RotationalDirection::CCW.opposite(), RotationalDirection::CW);
+	/// ```
+	pub fn opposite(&self) -> Self
+	{
+		match self
+		{
+			RotationalDirection::CW => RotationalDirection::CCW,
+			RotationalDirection::CCW => RotationalDirection::CW,
+		}
+	}
+}

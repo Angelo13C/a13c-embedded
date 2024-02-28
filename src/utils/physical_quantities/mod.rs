@@ -5,4 +5,5 @@ pub mod angle;
 pub mod color;
 pub mod duration;
 pub mod frequency;
+pub mod rotational_direction;
 pub mod temperature;
