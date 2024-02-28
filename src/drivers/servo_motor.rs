@@ -85,7 +85,7 @@ impl<const MIN_PULSE_DURATION: u32, const MAX_PULSE_DURATION: u32> ServoPosition
 	/// Creates a [`ServoPosition`] representing the provided `angle`.
 	///
 	/// Returns `Ok(Self)` if the `angle` is in the range a servo motor can hold `[0°, 180°]`, otherwise `Err(())`.
-	pub fn from_angle(angle: Angle) -> Result<Self, ()>
+	pub fn from_angle(angle: Angle) -> Result<Self, AngleOutOfBounds>
 	{
 		Self::from_pulse_duration(SmallDuration::from_tens_of_nanos(math::map(
 			angle.into_radians(),
@@ -96,14 +96,14 @@ impl<const MIN_PULSE_DURATION: u32, const MAX_PULSE_DURATION: u32> ServoPosition
 
 	/// Creates a [`ServoPosition`] that has the provided [`pulse duration`].
 	///
-	/// Returns `Ok(Self)` if the duration is in the range a servo motor can hold `[500us, 2500us]`, otherwise `Err(())`.
+	/// Returns `Ok(Self)` if the duration is in the range a servo motor can hold `[500us, 2500us]`, otherwise `Err(AngleOutOfBounds)`.
 	///
 	/// [`pulse duration`]: https://en.wikipedia.org/wiki/Servo_control#Pulse_duration
-	pub const fn from_pulse_duration(pulse_duration: SmallDuration) -> Result<Self, ()>
+	pub const fn from_pulse_duration(pulse_duration: SmallDuration) -> Result<Self, AngleOutOfBounds>
 	{
 		if pulse_duration.as_micros() < MIN_PULSE_DURATION || pulse_duration.as_micros() > MAX_PULSE_DURATION
 		{
-			return Err(());
+			return Err(AngleOutOfBounds);
 		}
 
 		Ok(Self(pulse_duration))
@@ -137,3 +137,6 @@ impl<const MIN_PULSE_DURATION: u32, const MAX_PULSE_DURATION: u32> ServoPosition
 		.unwrap()
 	}
 }
+
+#[derive(Clone, Copy, Debug)]
+pub struct AngleOutOfBounds;
