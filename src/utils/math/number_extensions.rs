@@ -1,8 +1,13 @@
+#[cfg(not(std))]
+use micromath::F32Ext;
+
 /// Extends the functionality of numbers types (like `f32`).
 pub trait NumberExt
 {
 	/// Returns the square of self (`self * self`).
 	fn sqr(&self) -> Self;
+
+	fn ceil_div(&self, other: Self) -> Self;
 }
 
 impl NumberExt for f32
@@ -20,6 +25,11 @@ impl NumberExt for f32
 	fn sqr(&self) -> Self
 	{
 		*self * *self
+	}
+
+	fn ceil_div(&self, other: Self) -> Self
+	{
+		(self / other).ceil()
 	}
 }
 
@@ -39,6 +49,11 @@ macro_rules! impl_number_ext_for_integer {
 			fn sqr(&self) -> Self
 			{
 				*self * *self
+			}
+
+			fn ceil_div(&self, other: Self) -> Self
+			{
+				*self / other + (*self % other != 0) as Self
 			}
 		}
 	};
