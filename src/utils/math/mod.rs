@@ -24,6 +24,7 @@
 //! # assert_eq!(format!("Contrained value: {}", constrained_value), "Contrained value: 20");
 //! ```
 
+pub mod micromath;
 mod number_extensions;
 mod percentage;
 
