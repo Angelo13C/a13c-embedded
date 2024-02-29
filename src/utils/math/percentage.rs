@@ -1,4 +1,7 @@
-use core::fmt::{Debug, Display};
+use core::{
+	fmt::{Debug, Display},
+	ops::{Add, AddAssign, Sub, SubAssign},
+};
 
 /// A percentage value.
 #[derive(PartialEq, PartialOrd, Clone, Copy, Default)]
@@ -97,5 +100,50 @@ impl Display for Percentage
 	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result
 	{
 		write!(f, "{}%", self.0 * 100.)
+	}
+}
+
+impl Add for Percentage
+{
+	type Output = Self;
+
+	fn add(self, rhs: Self) -> Self::Output
+	{
+		Self::from_0_to_1(self.into_0_to_1() + rhs.into_0_to_1()).unwrap_or(Percentage::FULL)
+	}
+}
+
+impl AddAssign for Percentage
+{
+	fn add_assign(&mut self, rhs: Self)
+	{
+		*self = *self + rhs;
+	}
+}
+
+impl Sub for Percentage
+{
+	type Output = Self;
+
+	fn sub(self, rhs: Self) -> Self::Output
+	{
+		Self::from_0_to_1(self.into_0_to_1() - rhs.into_0_to_1()).unwrap_or_else(|_| {
+			if self.into_0_to_1() > rhs.into_0_to_1()
+			{
+				Percentage::FULL
+			}
+			else
+			{
+				Percentage::ZERO
+			}
+		})
+	}
+}
+
+impl SubAssign for Percentage
+{
+	fn sub_assign(&mut self, rhs: Self)
+	{
+		*self = *self - rhs;
 	}
 }
