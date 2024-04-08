@@ -44,7 +44,9 @@ pub trait TimerAdditionalFunctionality: 'static
 	///
 	/// [`current time`]: `Self::get_time`
 	fn set_alarm(&mut self, time: Duration) -> Result<(), Self::Error>;
+	fn set_alarm_in_ticks(&mut self, ticks: u64) -> Result<(), Self::Error>;
 
 	/// Get the current time kept by the timer.
 	fn get_time(&self) -> Result<Duration, Self::Error>;
+	fn get_time_in_ticks(&self) -> Result<u64, Self::Error>;
 }
