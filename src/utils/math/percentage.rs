@@ -11,6 +11,8 @@ impl Percentage
 {
 	/// The `0%` value.
 	pub const ZERO: Self = Self(0.);
+	/// The `50%` value.
+	pub const HALF: Self = Self(0.5);
 	/// The `100%` value.
 	pub const FULL: Self = Self(1.);
 
