@@ -13,6 +13,8 @@ embedded-svc = ["dep:embedded-svc"]
 graphics = ["dep:embedded-graphics"]
 
 hardware-esp32-s3 = ["dep:esp-idf-sys", "dep:esp-idf-hal", "dep:esp-idf-svc"]
+hardware-rp2040 = ["dep:rp2040-hal", "dep:cortex-m"]
+
 [dependencies]
 embedded-hal = "1.0.0"
 embedded-svc = { version = "0.27", optional = true }
@@ -28,3 +30,7 @@ micromath = { version = "2.1", features = ["vector"] }
 esp-idf-sys = { version = "0.34", optional = true, default-features = false }
 esp-idf-hal = { version = "0.43", optional = true, default-features = false }
 esp-idf-svc = { version = "0.48", optional = true, default-features = false }
+
+cortex-m = { version = "0.7", optional = true }
+
+rp2040-hal = { version = "0.10", optional = true }
