@@ -8,11 +8,15 @@ description = "Common utilities and drivers for embedded systems. It's independe
 [features]
 default = ["graphics"]
 
+embedded-svc = ["dep:embedded-svc"]
+
 graphics = ["dep:embedded-graphics"]
 
 hardware-esp32-s3 = ["dep:esp-idf-sys", "dep:esp-idf-hal", "dep:esp-idf-svc"]
 [dependencies]
 embedded-hal = "1.0.0"
+embedded-svc = { version = "0.27", optional = true }
+
 pid = "4.0.0"
 enumset = "1.1"
 ringbuffer = "0.15"
