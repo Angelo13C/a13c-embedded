@@ -1,7 +1,9 @@
 mod pwm;
+mod rgb;
 
 use embedded_hal::digital::{ErrorType, OutputPin, StatefulOutputPin};
 pub use pwm::*;
+pub use rgb::*;
 
 pub struct Led<P: OutputPin>
 {
