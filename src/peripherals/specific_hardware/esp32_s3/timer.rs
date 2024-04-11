@@ -5,9 +5,10 @@ use esp_idf_hal::{
 	timer::{config, Timer as EspTimer, TimerDriver},
 };
 use esp_idf_sys::{esp, EspError};
-use firmware_core::{
-	printer::components::hal::timer::{Timer as TimerTrait, TimerAdditionalFunctionality as TimerInInterruptTrait},
-	utils::measurement::frequency::Frequency,
+
+use crate::{
+	peripherals::timer::{Timer as TimerTrait, TimerAdditionalFunctionality as TimerInInterruptTrait},
+	utils::physical_quantities::frequency::Frequency,
 };
 
 /// Maximum supported frequency of the [`base clock`].

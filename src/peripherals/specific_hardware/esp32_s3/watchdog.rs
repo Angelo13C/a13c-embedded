@@ -1,8 +1,10 @@
 use esp_idf_hal::task::watchdog::*;
 use esp_idf_sys::EspError;
-use firmware_core::printer::components::hal::watchdog::{
-	Watchdog as WatchdogTrait, WatchdogCreator as WatchdogCreatorTrait,
-};
+
+use crate::peripherals::watchdog::{Watchdog as WatchdogTrait, WatchdogCreator as WatchdogCreatorTrait};
+
+extern crate alloc;
+use alloc::boxed::Box;
 
 #[derive(Clone)]
 pub struct WatchdogCreator(pub TWDTDriver<'static>);

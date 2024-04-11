@@ -10,11 +10,12 @@ use esp_idf_hal::{
 	},
 };
 use esp_idf_sys::{esp, ledc_set_freq, EspError};
-use firmware_core::{
-	printer::components::hal::pwm::PwmPin as PwmPinTrait,
+
+use crate::{
+	peripherals::pwm::PwmPin as PwmPinTrait,
 	utils::{
 		math::Percentage,
-		measurement::{duration::SmallDuration, frequency::Frequency},
+		physical_quantities::{duration::SmallDuration, frequency::Frequency},
 	},
 };
 

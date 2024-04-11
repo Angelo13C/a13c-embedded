@@ -5,10 +5,15 @@ use esp_idf_hal::{
 	gpio::ADCPin as EspAdcPin,
 };
 use esp_idf_sys::EspError;
-use firmware_core::{
-	printer::components::hal::adc::{Adc as AdcTrait, AdcPin as AdcPinTrait},
+
+use crate::{
+	peripherals::adc::{Adc as AdcTrait, AdcPin as AdcPinTrait},
 	utils::math::Percentage,
 };
+
+/// The value of this constant isn't `3300` but is `3250` because of some small problems with my PCB design
+/// (or some problems with the ADC of the ESP32-S3) which lower the max readable voltage.
+pub const ADC_MAX_READABLE_MILLIVOLTS: u16 = 3250;
 
 pub struct Adc<'d, ADC: EspAdc>(pub EspAdcDriver<'d, ADC>);
 impl<'d, ADC: EspAdc> AdcTrait for Adc<'d, ADC>
@@ -19,18 +24,18 @@ impl<'d, ADC: EspAdc> AdcTrait for Adc<'d, ADC>
 	/// goes from 0 to 4095) to the range 0..3300 mV.
 	fn max_readable_value(&self) -> Self::ReadableValue
 	{
-		AdcReading(crate::config::components::ADC_MAX_READABLE_MILLIVOLTS)
+		AdcReading(ADC_MAX_READABLE_MILLIVOLTS)
 	}
 }
 
 pub struct AdcReading(u16);
-impl std::ops::Div<AdcReading> for AdcReading
+impl core::ops::Div<AdcReading> for AdcReading
 {
 	type Output = Result<Percentage, ()>;
 
 	fn div(self, rhs: AdcReading) -> Self::Output
 	{
-		Percentage::from_0_to_1(self.0 as f32 / rhs.0 as f32)
+		Percentage::from_0_to_1(self.0 as f32 / rhs.0 as f32).map_err(|_| ())
 	}
 }
 

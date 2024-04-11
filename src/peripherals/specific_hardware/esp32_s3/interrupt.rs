@@ -1,20 +1,19 @@
+use embedded_hal::digital::{ErrorType, InputPin as InputPinTrait};
 use esp_idf_hal::gpio::{Input, InterruptType, Pin, PinDriver};
 use esp_idf_sys::EspError;
-use firmware_core::{
-	embedded_hal::digital::{ErrorType, InputPin as InputPinTrait},
-	printer::components::hal::interrupt::{self, InterruptPin},
-};
+
+use crate::peripherals::interrupt::{self, InterruptPin};
 
 pub struct InputPin<'d, P: Pin>(pub PinDriver<'d, P, Input>);
 
 impl<'d, P: Pin> InputPinTrait for InputPin<'d, P>
 {
-	fn is_high(&self) -> Result<bool, Self::Error>
+	fn is_high(&mut self) -> Result<bool, Self::Error>
 	{
 		Ok(self.0.is_high())
 	}
 
-	fn is_low(&self) -> Result<bool, Self::Error>
+	fn is_low(&mut self) -> Result<bool, Self::Error>
 	{
 		Ok(self.0.is_low())
 	}

@@ -2,7 +2,8 @@ use core::fmt::Debug;
 
 use esp_idf_hal::uart::UartDriver;
 use esp_idf_sys::{EspError, TickType_t};
-use firmware_core::{printer::components::hal::uart::Uart, utils::measurement::duration::SmallDuration};
+
+use crate::{peripherals::uart::Uart, utils::physical_quantities::duration::SmallDuration};
 
 pub struct UARTDriver<'d>(pub UartDriver<'d>);
 

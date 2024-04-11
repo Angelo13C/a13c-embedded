@@ -3,7 +3,8 @@ use core::time::Duration;
 use esp_idf_hal::delay::Delay;
 use esp_idf_svc::timer::EspTaskTimerService;
 use esp_idf_sys::EspError;
-use firmware_core::printer::components::time::SystemTime as SystemTimeTrait;
+
+use crate::peripherals::system_time::SystemTime as SystemTimeTrait;
 
 #[derive(Clone)]
 pub struct SystemTime(EspTaskTimerService);
