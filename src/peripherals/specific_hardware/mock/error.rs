@@ -24,11 +24,11 @@ impl embedded_hal::digital::Error for MockDigitalError
 }
 
 #[cfg(feature = "embedded-svc")]
-#[derive(Debug, Copy, Clone, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct MockIoError(embedded_svc::io::ErrorKind);
 
 #[cfg(feature = "embedded-svc")]
-impl embedded_svc::io::Error for MockError
+impl embedded_svc::io::Error for MockIoError
 {
 	fn kind(&self) -> embedded_svc::io::ErrorKind
 	{

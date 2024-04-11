@@ -23,6 +23,7 @@ embedded-svc = { version = "0.27", optional = true }
 pid = "4.0.0"
 enumset = "1.1"
 ringbuffer = "0.15"
+strum = { version = "0.25", features = ["derive"] }
 
 embedded-graphics = { version = "0.8.1", optional = true }
 
