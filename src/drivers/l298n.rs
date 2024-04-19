@@ -1,4 +1,4 @@
-pub use embedded_hal::digital::OutputPin;
+use embedded_hal::digital::OutputPin;
 
 use crate::{
 	peripherals::pwm::PwmPin,
