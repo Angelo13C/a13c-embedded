@@ -99,3 +99,17 @@ where T: Copy + PartialOrd
 		value
 	}
 }
+
+/// # Examples
+/// ```
+/// use a13c_embedded::utils::math;
+///
+/// assert_eq!(math::div_ceil(10, 3), 4);
+/// assert_eq!(math::div_ceil(11, 3), 4);
+/// assert_eq!(math::div_ceil(12, 3), 4);
+/// assert_eq!(math::div_ceil(13, 3), 5);
+/// ```
+pub fn div_ceil(a: i32, b: i32) -> i32
+{
+	(a + b - 1) / b
+}
