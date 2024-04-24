@@ -29,6 +29,7 @@ log = { version = "0.4", default-features = false }
 
 embedded-graphics = { version = "0.8.1", optional = true }
 embedded-graphics-framebuf = { version = "0.5", optional = true }
+display-interface-spi = { version = "0.5", optional = true }
 display-interface = { version = "0.5", optional = true }
 
 micromath = { version = "2.1", features = ["vector"] }
