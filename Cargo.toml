@@ -25,6 +25,8 @@ enumset = "1.1"
 ringbuffer = "0.15"
 strum = { version = "0.25", features = ["derive"] }
 
+log = { version = "0.4", default-features = false }
+
 embedded-graphics = { version = "0.8.1", optional = true }
 
 micromath = { version = "2.1", features = ["vector"] }
