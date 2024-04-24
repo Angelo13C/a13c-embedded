@@ -21,10 +21,6 @@
 //!     fn now(&self) -> Duration {
 //!         self.0
 //!     }
-//!
-//!     fn delay(&self, _duration: Duration) {
-//!         // Do something to make a blocking delay here...
-//!     }
 //! }
 //! ```
 
@@ -108,7 +104,8 @@ impl<T: SystemTime> Clock<T>
 	/// Blocks this core of the microcontroller for the provided `duration`.
 	pub fn delay(&self, duration: Duration)
 	{
-		self.system_time.delay(duration)
+		todo!()
+		//self.system_time.delay(duration)
 	}
 }
 
@@ -117,9 +114,6 @@ pub trait SystemTime
 {
 	/// Returns the amount of time this microcontroller has been running for.
 	fn now(&self) -> Duration;
-
-	/// Blocks this core of the microcontroller for the provided `duration`.
-	fn delay(&self, duration: Duration);
 }
 
 impl<T: SystemTime> Debug for Clock<T>
