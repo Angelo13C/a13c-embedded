@@ -10,7 +10,7 @@ default = ["graphics"]
 
 embedded-svc = ["dep:embedded-svc"]
 
-graphics = ["dep:embedded-graphics"]
+graphics = ["dep:embedded-graphics", "dep:embedded-graphics-framebuf", "dep:display-interface", "dep:display-interface-spi"]
 
 hardware-esp32-s3 = ["dep:esp-idf-sys", "dep:esp-idf-hal", "dep:esp-idf-svc"]
 hardware-rp2040 = ["dep:rp2040-hal", "dep:cortex-m"]
