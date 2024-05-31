@@ -3,6 +3,10 @@ use embedded_graphics::pixelcolor::{Rgb888, RgbColor};
 use super::LedPwm;
 use crate::{peripherals::pwm::PwmPin, utils::math::Percentage};
 
+/// An RGB [`light-emitting diode`] connected to the microcontroller through the `PRed`, `PGreen`, `PBlue` PWM pins, which allows
+/// to control it.
+///
+/// [`light-emitting diode`]: <https://en.wikipedia.org/wiki/Light-emitting_diode>
 pub struct LedRgb<PRed: PwmPin, PGreen: PwmPin, PBlue: PwmPin>
 {
 	red: LedPwm<PRed>,
@@ -11,6 +15,7 @@ pub struct LedRgb<PRed: PwmPin, PGreen: PwmPin, PBlue: PwmPin>
 }
 impl<PRed: PwmPin, PGreen: PwmPin, PBlue: PwmPin> LedRgb<PRed, PGreen, PBlue>
 {
+	/// Returns a [`Led`] that can control its color state through the provided pins.
 	pub fn new(red_pin: PRed, green_pin: PGreen, blue_pin: PBlue) -> Self
 	{
 		Self {
@@ -20,11 +25,13 @@ impl<PRed: PwmPin, PGreen: PwmPin, PBlue: PwmPin> LedRgb<PRed, PGreen, PBlue>
 		}
 	}
 
+	/// Turns off the led (setting all the 3 channels to have a `0%` duty cycle).
 	pub fn turn_off(&mut self) -> Result<(), SetColorError<PRed, PGreen, PBlue>>
 	{
 		self.set_color(Rgb888::new(0, 0, 0))
 	}
 
+	/// Sets the color of the led.
 	pub fn set_color<Color: RgbColor>(&mut self, color: Color) -> Result<(), SetColorError<PRed, PGreen, PBlue>>
 	{
 		self.red
@@ -40,6 +47,7 @@ impl<PRed: PwmPin, PGreen: PwmPin, PBlue: PwmPin> LedRgb<PRed, PGreen, PBlue>
 		Ok(())
 	}
 
+	/// Sets the previously set color of the led.
 	pub fn get_color(&self) -> Rgb888
 	{
 		Rgb888::new(
