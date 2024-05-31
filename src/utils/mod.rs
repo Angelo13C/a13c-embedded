@@ -8,6 +8,7 @@ pub mod algorithms;
 pub mod collections;
 pub mod math;
 pub mod physical_quantities;
+pub mod range;
 
 /// Converts the provided `slice` to an array of the same type and with the length `N`.
 ///
