@@ -11,6 +11,7 @@ default = ["graphics"]
 embedded-svc = ["dep:embedded-svc"]
 
 graphics = ["dep:embedded-graphics", "dep:embedded-graphics-framebuf", "dep:display-interface", "dep:display-interface-spi"]
+storage = ["dep:embedded-storage", "dep:embedded-sdmmc"]
 
 hardware-esp32-s3 = ["dep:esp-idf-sys", "dep:esp-idf-hal", "dep:esp-idf-svc"]
 hardware-esp32 = ["dep:esp-idf-sys", "dep:esp-idf-hal", "dep:esp-idf-svc"]
