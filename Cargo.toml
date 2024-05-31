@@ -38,6 +38,7 @@ micromath = { version = "2.1", features = ["vector"] }
 
 
 embedded-storage = { version = "0.3", optional = true }
+embedded-sdmmc = { version = "0.7", optional = true }
 
 esp-idf-sys = { version = "0.34", optional = true, default-features = false }
 esp-idf-hal = { version = "0.43", optional = true, default-features = false }
