@@ -5,6 +5,7 @@
 //! promote code reuse and readability.
 
 pub mod algorithms;
+pub mod collections;
 pub mod math;
 pub mod physical_quantities;
 
