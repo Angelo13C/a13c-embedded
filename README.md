@@ -1,0 +1,3 @@
+# What is this repo?
+I am making various projects in the embedded world using the Rust programming language, and I noticed that some code that I wrote could be reused in all the projects.
+So instead of copy-pasting the code, I made this repo, which is a central library for all my embedded projects, containing the code for various drivers, functionalities, utilies...
