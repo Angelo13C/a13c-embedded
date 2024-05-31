@@ -95,11 +95,7 @@ impl<Chip: FlashMemoryChip> Debug for RowAddress<Chip>
 {
 	fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result
 	{
-		todo!()
-		/*
-		f.debug_tuple(&format!("RowAddress<{}>", core::any::type_name::<Chip>()))
-			.field(&self.0)
-			.finish()*/
+		f.debug_tuple("RowAddress").field(&self.0).finish()
 	}
 }
 
