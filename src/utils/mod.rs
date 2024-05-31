@@ -53,3 +53,30 @@ where T: Clone + Copy
 {
 	core::array::from_fn(|i| *slice.get(i).unwrap_or(&fill))
 }
+
+/// Returns the digits count of `number`.
+pub fn itoa(mut number: i32, string: &mut [u8]) -> u8
+{
+	let mut i = 0;
+	loop
+	{
+		let digit = (number % 10) as u8;
+		number /= 10;
+		string[i] = digit + b'0';
+
+		i += 1;
+
+		if number == 0
+		{
+			// Swap the order of bytes
+			for j in 0..(i / 2)
+			{
+				let temp = string[j];
+				string[j] = string[i - j - 1];
+				string[i - j - 1] = temp;
+			}
+
+			return i as u8;
+		}
+	}
+}
