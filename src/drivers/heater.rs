@@ -19,4 +19,15 @@ impl<P: PwmPin> PwmHeater<P>
 	{
 		self.pin.set_duty_cycle(percentage)
 	}
+
+	/// Returns a reference to the `pin` you provided to [`Self::new`].
+	pub fn get_pin_ref(&self) -> &P
+	{
+		&self.pin
+	}
+	/// Returns a mutable reference to the `pin` you provided to [`Self::new`].
+	pub fn get_pin_mut(&mut self) -> &mut P
+	{
+		&mut self.pin
+	}
 }
