@@ -8,6 +8,8 @@ description = "Common utilities and drivers for embedded systems. It's independe
 [features]
 default = ["graphics"]
 
+alloc = ["esp-idf-svc/alloc"]
+
 embedded-svc = ["dep:embedded-svc"]
 
 graphics = ["dep:embedded-graphics", "dep:embedded-graphics-framebuf", "dep:display-interface", "dep:display-interface-spi"]
