@@ -1,3 +1,4 @@
+#[allow(unused_imports)]
 #[cfg(not(std))]
 use micromath::F32Ext;
 
