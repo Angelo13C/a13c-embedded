@@ -7,8 +7,6 @@
 pub mod adc;
 pub mod interrupt;
 pub mod pwm;
-pub mod specific_hardware;
-pub mod system_time;
-pub mod timer;
+pub mod time;
 pub mod uart;
 pub mod watchdog;

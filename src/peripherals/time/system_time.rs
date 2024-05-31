@@ -8,7 +8,7 @@
 //!
 //! ```rust
 //! use core::time::Duration;
-//! use a13c_embedded::peripherals::system_time::*;
+//! use a13c_embedded::peripherals::time::system_time::*;
 //!
 //! let system_time = MockSystemTime(Duration::from_secs(0));
 //! let mut clock = Clock::new(system_time);
@@ -99,13 +99,6 @@ impl<T: SystemTime> Clock<T>
 	pub fn get_delta_time(&self) -> Duration
 	{
 		self.get_elapsed_time() - self.last_tick_time
-	}
-
-	/// Blocks this core of the microcontroller for the provided `duration`.
-	pub fn delay(&self, duration: Duration)
-	{
-		todo!()
-		//self.system_time.delay(duration)
 	}
 }
 

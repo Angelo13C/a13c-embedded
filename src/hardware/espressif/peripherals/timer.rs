@@ -7,14 +7,14 @@ use esp_idf_hal::{
 use esp_idf_sys::{esp, EspError};
 
 use crate::{
-	peripherals::timer::{Timer as TimerTrait, TimerAdditionalFunctionality as TimerInInterruptTrait},
+	peripherals::time::timer::{Timer as TimerTrait, TimerAdditionalFunctionality as TimerInInterruptTrait},
 	utils::physical_quantities::frequency::Frequency,
 };
 
 /// Maximum supported frequency of the [`base clock`].
 ///
 /// ```
-/// # use esp32-s3::peripherals::timer::*;
+/// # use esp32-s3::peripherals::time::timer::*;
 /// #
 /// assert_eq!(BASE_CLOCK_FREQUENCY, Frequency::from_hertz(80_000_000));
 /// ```

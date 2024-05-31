@@ -1,6 +1,6 @@
 use core::time::Duration;
 
-use crate::peripherals::system_time::SystemTime;
+use crate::peripherals::time::system_time::SystemTime;
 
 pub struct MockSystemTime
 {
@@ -12,10 +12,5 @@ impl SystemTime for MockSystemTime
 	fn now(&self) -> Duration
 	{
 		self.current_time
-	}
-
-	fn delay(&self, _: Duration)
-	{
-		todo!()
 	}
 }

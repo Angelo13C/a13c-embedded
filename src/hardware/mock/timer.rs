@@ -1,5 +1,5 @@
 use crate::{
-	peripherals::timer::{Timer, TimerAdditionalFunctionality},
+	peripherals::time::timer::{Timer, TimerAdditionalFunctionality},
 	utils::physical_quantities::frequency::Frequency,
 };
 

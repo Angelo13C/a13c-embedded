@@ -1,6 +1,9 @@
 pub mod adc;
+pub mod delay;
 pub mod interrupt;
 pub mod pwm;
+#[cfg(feature = "std")]
+pub mod real_time;
 pub mod system_time;
 pub mod timer;
 pub mod uart;

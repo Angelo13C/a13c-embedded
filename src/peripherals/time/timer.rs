@@ -1,6 +1,6 @@
 use core::{fmt::Debug, time::Duration};
 
-use crate::utils::physical_quantities::frequency::Frequency;
+use crate::utils::physical_quantities::{duration::SmallDuration, frequency::Frequency};
 
 /// A timer that can be used to get the current time it is keeping and also to [`call some callback you provide when a certain
 /// time is reached`].
@@ -49,4 +49,23 @@ pub trait TimerAdditionalFunctionality: 'static
 	/// Get the current time kept by the timer.
 	fn get_time(&self) -> Result<Duration, Self::Error>;
 	fn get_time_in_ticks(&self) -> Result<u64, Self::Error>;
+}
+
+pub fn duration_to_counter(clock_frequency: Frequency, duration: Duration) -> u64
+{
+	let clock_frequency = clock_frequency.as_hertz() as u64;
+	let mut counter = duration.as_secs() * clock_frequency;
+	counter += (duration.subsec_nanos() as u64 * clock_frequency) / Duration::from_secs(1).as_nanos() as u64;
+	counter
+}
+
+pub fn small_duration_to_counter(clock_frequency: Frequency, duration: SmallDuration) -> u64
+{
+	let clock_frequency = clock_frequency.as_hertz() as u64;
+	let mut counter = duration.as_seconds() as u64 * clock_frequency;
+	let subsec_tens_of_nanos =
+		duration.as_tens_of_nanos() - (duration.as_seconds() * SmallDuration::from_seconds(1).as_tens_of_nanos());
+	counter +=
+		(subsec_tens_of_nanos as u64 * clock_frequency) / SmallDuration::from_seconds(1).as_tens_of_nanos() as u64;
+	counter
 }

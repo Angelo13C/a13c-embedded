@@ -3,7 +3,7 @@ use core::time::Duration;
 use esp_idf_svc::timer::EspTaskTimerService;
 use esp_idf_sys::EspError;
 
-use crate::peripherals::system_time::SystemTime as SystemTimeTrait;
+use crate::peripherals::time::system_time::SystemTime as SystemTimeTrait;
 
 #[derive(Clone)]
 pub struct SystemTime(EspTaskTimerService);
